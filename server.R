@@ -88,13 +88,13 @@ shinyServer(function(input, output){
     
     train <- reactive({
       ML_data() %>% 
-      select(26:32) %>% 
+      select(dec:shar) %>% 
       slice(1:(nrow(ML_data())/2))
     })
     
     test <- reactive({
       ML_data() %>% 
-      select(26:32) %>% 
+      select(dec:shar) %>% 
       slice((nrow(ML_data())/2+1):nrow(ML_data()))
     })
     
