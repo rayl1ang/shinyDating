@@ -10,28 +10,34 @@ shinyUI(dashboardPage(
         )
     ),
     dashboardBody(
-      tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
-      ),
       tabItems(
         tabItem(tabName = "activity",
                 fluidRow(infoBoxOutput("rank1Box"),
                          infoBoxOutput("rank2Box"),
                          infoBoxOutput("rank3Box")),
-                fluidRow(box(plotOutput("activ_bar"), height = 400, width = 300))
+                fluidRow(box(plotOutput("activ_bar"), height = 400, width = 12))
         ),
         
         tabItem(tabName = "freqStats",
                 fluidRow(box(title = "Frequency of Dates and Outdoor Activities",
                              selectInput('career', 'Please select a career:',
                                          choices = sort(unique(career_df$career)), 
-                                         selectize = F, size = 17)),
-                         box(plotOutput('freqPlot')))
+                                         selectize = F, size = 17), width = 4, height = 400),
+                         box(title = 'Data Dictionary',
+                             HTML(paste('1 = Several times a week',
+                                        '2 = Twice a week',
+                                        '3 = Once a week',
+                                        '4 = Twice a month',
+                                        '5 = Once a month',
+                                        '6 = Several times a year',
+                                        '7 = Almost never', sep="<br/>")), width = '3', height = 400),
+                         box(plotOutput('freqPlot'), width = 5)
+                         
+                         
+                )
         ),
         
         tabItem(tabName = "calculator",
-                # fluidRow(h3(strong('Calculate Your Percentage of Landing a Date!'), align = 'center'), 
-                #          br()),
                 fluidRow(box(solidHeader = T,
                              sidebarPanel(h4("Please rate yourself on the following attributes:"),
                                           width = 12,

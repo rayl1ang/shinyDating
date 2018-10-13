@@ -61,12 +61,13 @@ shinyServer(function(input, output, session){
     })
     
     output$freqPlot <- renderPlot({
-      temp <- ggplot(career_gender(),aes(date, go_out)) +
+      temp <- ggplot(career_gender(),aes(go_out, date)) +
         geom_jitter(color = career_gender()$fill_color ) +
         theme(plot.subtitle = element_text(vjust = 1), 
-                plot.caption = element_text(vjust = 1), 
-                axis.title = element_text(colour = "gray28")) +
-        labs(x = "Dating Frequency", y = "Outdoor Activity Frequency") + 
+              plot.caption = element_text(vjust = 1), 
+              axis.title = element_text(colour = "gray28", size = 13),
+              axis.text = element_text(size = 11)) +
+        labs(x = "Outdoor Activity Frequency", y = "Dating Frequency" ) + 
         scale_x_continuous(breaks=seq(1,7,1)) + 
         scale_y_continuous(breaks=seq(1,7,1))
       
