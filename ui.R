@@ -30,8 +30,8 @@ shinyUI(dashboardPage(
         ),
         
         tabItem(tabName = "calculator",
-                fluidRow(h3(strong('Calculate Your Percentage of Landing a Date!'), align = 'center'), 
-                         br()),
+                # fluidRow(h3(strong('Calculate Your Percentage of Landing a Date!'), align = 'center'), 
+                #          br()),
                 fluidRow(box(solidHeader = T,
                              sidebarPanel(h4("Please rate yourself on the following attributes:"),
                                           width = 12,
@@ -50,13 +50,12 @@ shinyUI(dashboardPage(
                                             choices = 10:1), 
                              actionButton('calc', label = 'Calculate'), height = 600)),
                          
-                          box(title = h3("Your percentage of landing a date is: ",align='center'),
-                              solidHeader = T,
-                              br(),
+                          box(solidHeader = T,
+                              sidebarPanel(h4("Your percentage of landing a date is: ",align='center'),
                               h1(strong(textOutput("date_prob")), align = 'center'),
+                              br(),
                               plotOutput("spiderchart"),
-                              #img(src="Menu_photo.JPG"),
-                              height = 600)
+                              width = 12, height = 600))
                 ))
       )
     )

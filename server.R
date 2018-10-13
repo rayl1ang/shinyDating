@@ -1,4 +1,4 @@
-shinyServer(function(input, output){
+shinyServer(function(input, output, session){
   
     #show activities horizontal bar chart
     activities_reactive <- reactive({
@@ -50,15 +50,15 @@ shinyServer(function(input, output){
         filter(career == input$career)
     })
     
-    # observe({
-    #    <- unique(career_df %>%
-    #                filter()
-    #                    .$dest)
-    #   updateSelectizeInput(
-    #     session, "dest",
-    #     choices = dest,
-    #     selected = dest[1])
-    # })
+    observe({
+       career_observe<- unique(career_df %>% 
+                               filter(gender == input$sex) %>% 
+                               .$career)
+      updateSelectInput(
+        session, "career",
+        choices = career_observe,
+        selected = career_observe[1])
+    })
     
     output$freqPlot <- renderPlot({
       temp <- ggplot(career_gender(),aes(date, go_out)) +
