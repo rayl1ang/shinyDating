@@ -121,8 +121,17 @@ shinyServer(function(input, output, session){
     #render SpiderChart
     
     output$spiderchart <- renderPlot({
+      
+      user_df_initial <- data.frame(attr = 0, sinc = 0, 
+                                    intel = 0, fun = 0, 
+                                    amb = 0, shar = 0)
+      
       #adding upper/lower bounds to radarchart
-      user_df_bounds <- rbind(rep(10,6) , rep(0,6) , user_df())
+      user_df_bounds <- if(input$calc == 0) {
+                               rbind(rep(10,6) , rep(0,6) , user_df_initial)
+                               } else (rbind(rep(10,6) , rep(0,6) , user_df()))
+      
+      observe(print(class(user_df_bounds)))
       
       #renaming columns to better match descriptions for final chart
       colnames(user_df_bounds) <- c('Sincerity','Attractiveness','Intellect',
@@ -135,6 +144,10 @@ shinyServer(function(input, output, session){
                  pcol=rgb(0.2,0.8,0,0.9), pfcol=rgb(0.2,0.8,0,0.4) , plwd=2 , plty=1)
     })
     
-    output$date_prob <-  renderText(pred())
+    output$date_prob <-  renderText({
+                              if (input$calc == 0) {
+                                as.character('?')
+                              } else (pred()) 
+      })
     
 })

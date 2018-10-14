@@ -35,8 +35,8 @@ SD_df %>%
   facet_grid(~gender) + 
   theme(plot.subtitle = element_text(vjust = 1), 
         plot.caption = element_text(vjust = 1), 
-        axis.title = element_text(size = 11, colour = "gray28"), 
-        axis.text = element_text(size = 10),
+        axis.title = element_text(size = 13, colour = "gray28"), 
+        axis.text = element_text(size = 11),
         plot.title = element_text(face = "bold", 
                                   colour = "gray28",
                                   hjust = 0.5)) +
