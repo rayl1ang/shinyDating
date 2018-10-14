@@ -60,14 +60,22 @@ shinyServer(function(input, output, session){
         selected = career_observe[1])
     })
     
+    output$facet_freqplot <- renderPlot({
+      datingFreq_facet
+    })
+    
     output$freqPlot <- renderPlot({
       temp <- ggplot(career_gender(),aes(go_out, date)) +
         geom_jitter(color = career_gender()$fill_color ) +
         theme(plot.subtitle = element_text(vjust = 1), 
               plot.caption = element_text(vjust = 1), 
               axis.title = element_text(colour = "gray28", size = 13),
-              axis.text = element_text(size = 11)) +
-        labs(x = "Outdoor Activity Frequency", y = "Dating Frequency" ) + 
+              axis.text = element_text(size = 11),
+              plot.title = element_text(face = "bold", 
+                                        colour = "gray28",
+                                        hjust = 0.5)) +
+        labs(x = "Outdoor Activity Frequency", y = "Dating Frequency",
+             title = paste("Dating vs Outdoor Activities \n Frequencies by Career")) + 
         scale_x_continuous(breaks=seq(1,7,1)) + 
         scale_y_continuous(breaks=seq(1,7,1))
       
@@ -109,6 +117,8 @@ shinyServer(function(input, output, session){
       model <- glm(dec ~ ., family = binomial(link = "logit"), data = train())
       paste(round((predict(model, user_df(), type='response') * 100), 2), '%')
     })
+
+    #render SpiderChart
     
     output$spiderchart <- renderPlot({
       #adding upper/lower bounds to radarchart

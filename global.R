@@ -29,4 +29,19 @@ SD_df %>%
   filter(!is.na(date)) %>% 
   mutate(fill_color = ifelse(gender == 'Female', 'tomato3', 'royalblue3'))-> career_df     
 
+SD_df %>% 
+  ggplot(aes(go_out, date, color = gender)) + 
+  geom_jitter() + 
+  facet_grid(~gender) + 
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1), 
+        axis.title = element_text(size = 11, colour = "gray28"), 
+        axis.text = element_text(size = 10),
+        plot.title = element_text(face = "bold", 
+                                  colour = "gray28",
+                                  hjust = 0.5)) +
+  labs(x = "Outdoor Activities Frequency",                                                                                       
+       y = "Dating Frequency", colour = "Gender",
+       title = "Dating vs Outdoor Activities \n Frequencies by Gender") -> datingFreq_facet 
+
                 
