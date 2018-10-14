@@ -119,7 +119,6 @@ shinyServer(function(input, output, session){
     })
 
     #render SpiderChart
-    
     output$spiderchart <- renderPlot({
       
       user_df_initial <- data.frame(attr = 0, sinc = 0, 
@@ -130,8 +129,6 @@ shinyServer(function(input, output, session){
       user_df_bounds <- if(input$calc == 0) {
                                rbind(rep(10,6) , rep(0,6) , user_df_initial)
                                } else (rbind(rep(10,6) , rep(0,6) , user_df()))
-      
-      observe(print(class(user_df_bounds)))
       
       #renaming columns to better match descriptions for final chart
       colnames(user_df_bounds) <- c('Sincerity','Attractiveness','Intellect',
