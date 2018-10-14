@@ -42,6 +42,6 @@ SD_df %>%
                                   hjust = 0.5)) +
   labs(x = "Outdoor Activities Frequency",                                                                                       
        y = "Dating Frequency", colour = "Gender",
-       title = "Dating vs Outdoor Activities \n Frequencies by Gender") -> datingFreq_facet 
+       title = "Dating vs Outdoor Activity \n Frequencies by Gender") -> datingFreq_facet 
 
                 

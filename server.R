@@ -51,9 +51,9 @@ shinyServer(function(input, output, session){
     })
     
     observe({
-       career_observe<- unique(career_df %>% 
+       career_observe<- sort(unique(career_df %>% 
                                filter(gender == input$sex) %>% 
-                               .$career)
+                               .$career))
       updateSelectInput(
         session, "career",
         choices = career_observe,
@@ -125,7 +125,7 @@ shinyServer(function(input, output, session){
                                     intel = 0, fun = 0, 
                                     amb = 0, shar = 0)
       
-      #adding upper/lower bounds to radarchart
+      #adding upper/lower bounds to radarchart and initial state of action button
       user_df_bounds <- if(input$calc == 0) {
                                rbind(rep(10,6) , rep(0,6) , user_df_initial)
                                } else (rbind(rep(10,6) , rep(0,6) , user_df()))
