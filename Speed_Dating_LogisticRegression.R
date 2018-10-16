@@ -8,23 +8,23 @@ ML_data_F <- SD_df[SD_df$gender == 'Female',]
 #splitting data
 train_F <- 
   ML_data_F %>% 
-    select(26:32) %>% 
+    select(dec:shar) %>% 
     slice(1:(nrow(ML_data_F)/2))
   
 test_F <- 
   ML_data_F %>% 
-  select(26:32) %>% 
+  select(dec:shar) %>% 
   slice((nrow(ML_data_F)/2+1):nrow(ML_data_F))
 
 
 train_M <- 
   ML_data_M %>% 
-  select(26:32) %>% 
+  select(dec:shar) %>% 
   slice(1:(nrow(ML_data_M)/2))
 
 test_M <- 
   ML_data_M %>% 
-  select(26:32) %>% 
+  select(dec:shar) %>% 
   slice((nrow(ML_data_M)/2+1):nrow(ML_data_M))
 
 
